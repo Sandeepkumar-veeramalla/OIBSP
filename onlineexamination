@@ -1,0 +1,116 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+
+// Define a class for questions
+class Question {
+    private String questionText;
+    private List<String> options;
+    private int correctOption;
+
+    public Question(String questionText, List<String> options, int correctOption) {
+        this.questionText = questionText;
+        this.options = options;
+        this.correctOption = correctOption;
+    }
+
+    public String getQuestionText() {
+        return questionText;
+    }
+
+    public List<String> getOptions() {
+        return options;
+    }
+
+    public int getCorrectOption() {
+        return correctOption;
+    }
+}
+
+// Define a class for users (students and admin)
+class User {
+    private String username;
+    private String password;
+    private boolean isAdmin;
+
+    public User(String username, String password, boolean isAdmin) {
+        this.username = username;
+        this.password = password;
+        this.isAdmin = isAdmin;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+}
+
+// Main class for the online examination system
+public class OnlineExamSystem {
+    private static Map<String, User> users = new HashMap<>();
+    private static List<Question> questionBank = new ArrayList<>();
+    private static List<Question> selectedQuestions = new ArrayList<>();
+    private static User currentUser = null;
+
+    public static void main(String[] args) {
+        // Initialize users (admin and students)
+        initializeUsers();
+
+        // Log in
+        login();
+
+        // If the user is an admin, provide admin options (e.g., manage questions)
+        if (currentUser.isAdmin()) {
+            adminMenu();
+        } else {
+            // If the user is a student, take the exam
+            takeExam();
+        }
+    }
+
+    private static void initializeUsers() {
+        // Initialize admin and student users (for simplicity, hard-coded usernames and passwords)
+        users.put("admin", new User("admin", "admin123", true));
+        users.put("student1", new User("student1", "pass123", false));
+        users.put("student2", new User("student2", "pass456", false));
+    }
+
+    private static void login() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Username: ");
+        String username = scanner.nextLine();
+        System.out.print("Password: ");
+        String password = scanner.nextLine();
+
+        User user = users.get(username);
+
+        if (user != null && user.getPassword().equals(password)) {
+            System.out.println("Login successful.");
+            currentUser = user;
+        } else {
+            System.out.println("Login failed. Invalid username or password.");
+            System.exit(0);
+        }
+    }
+
+    private static void adminMenu() {
+        // Implement admin menu options (e.g., add, edit, delete questions)
+        // You can add functionality to manage the question bank here.
+    }
+
+    private static void takeExam() {
+        // Implement the test-taking interface
+        // Randomly select questions from the question bank and grade the exam.
+        // Display the results to the student.
+    }
+}
