@@ -1,0 +1,91 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+
+// Define a class for books
+class Book {
+    private String isbn;
+    private String title;
+    private String author;
+    private int availableCopies;
+
+    public Book(String isbn, String title, String author, int availableCopies) {
+        this.isbn = isbn;
+        this.title = title;
+        this.author = author;
+        this.availableCopies = availableCopies;
+    }
+
+    // Getters and setters for book properties
+    // ...
+
+    // Additional methods for book management
+    // ...
+}
+
+// Define a class for library members
+class LibraryMember {
+    private String memberId;
+    private String name;
+    private List<String> borrowedBooks;
+
+    public LibraryMember(String memberId, String name) {
+        this.memberId = memberId;
+        this.name = name;
+        this.borrowedBooks = new ArrayList<>();
+    }
+
+    // Getters and setters for member properties
+    // ...
+
+    // Additional methods for member management
+    // ...
+}
+
+// Main class for the digital library management system
+public class LibraryManagementSystem {
+    private static Map<String, Book> books = new HashMap<>();
+    private static Map<String, LibraryMember> members = new HashMap<>();
+    private static LibraryMember currentMember = null;
+
+    public static void main(String[] args) {
+        // Initialize books and members (for simplicity, hard-coded data)
+        initializeBooks();
+        initializeMembers();
+
+        // Log in (librarian or library member)
+        login();
+
+        // Depending on the user role, show different menus (librarian or member)
+        if (currentMember != null) {
+            memberMenu();
+        } else {
+            librarianMenu();
+        }
+    }
+
+    private static void initializeBooks() {
+        // Initialize book data (ISBN, title, author, available copies)
+        // Add books to the 'books' map.
+    }
+
+    private static void initializeMembers() {
+        // Initialize member data (member ID, name)
+        // Add members to the 'members' map.
+    }
+
+    private static void login() {
+        // Implement user authentication (librarian and members)
+        // Set 'currentMember' based on the logged-in user.
+    }
+
+    private static void librarianMenu() {
+        // Implement librarian menu options (e.g., manage books, members)
+    }
+
+    private static void memberMenu() {
+        // Implement member menu options (e.g., borrow, return, search books)
+    }
+}
